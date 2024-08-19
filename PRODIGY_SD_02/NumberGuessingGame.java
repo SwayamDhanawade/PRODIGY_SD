@@ -1,8 +1,6 @@
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,24 +39,21 @@ public class NumberGuessingGame extends JFrame {
         panel.add(guessButton);
 
         // Add action listener to the button
-        guessButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = guessField.getText();
-                try {
-                    int guess = Integer.parseInt(input);
-                    attempts++;
-                    if (guess < numberToGuess) {
-                        JOptionPane.showMessageDialog(null, "Too low! Try again.");
-                    } else if (guess > numberToGuess) {
-                        JOptionPane.showMessageDialog(null, "Too high! Try again.");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Congratulations! You guessed the number " + numberToGuess + " correctly in " + attempts + " attempts.");
-                        resetGame();
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid number.");
+        guessButton.addActionListener((ActionEvent e) -> {
+            String input = guessField.getText();
+            try {
+                int guess = Integer.parseInt(input);
+                attempts++;
+                if (guess < numberToGuess) {
+                    JOptionPane.showMessageDialog(null, "Too low! Try again.");
+                } else if (guess > numberToGuess) {
+                    JOptionPane.showMessageDialog(null, "Too high! Try again.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Congratulations! You guessed the number " + numberToGuess + " correctly in " + attempts + " attempts.");
+                    resetGame();
                 }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid number.");
             }
         });
 
